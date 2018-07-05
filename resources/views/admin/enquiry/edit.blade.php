@@ -59,24 +59,23 @@
                         </div>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                     {{Form::Label('Shift')}}
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-shirtsinbulk"></i></span>
-                            {{Form::text('shift',$enquiry->shift,['class'=>'form-control',])}}
                             <select class="js-dropdown" style="width: 100%;" name="shift">
                                 <option selected="selected">--select--</option>
-                                   @foreach ($shifts as $shift)
-                                 <option value="{{$d->id}}"
+                                   @foreach ($shifts as $s)
+                                 <option value="{{$s->id}}"
                                  selected
-                                 >{{$d->shift}}</option>
+                                 >{{$s->shift}}</option>
                                    @endforeach
                                   </select>
 
                                   </select>
 
                         </div>
-            </div>
+            </div> --}}
 
 
             <div class="form-group">

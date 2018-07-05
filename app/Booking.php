@@ -16,4 +16,9 @@ class Booking extends Model
         return $this->belongsto('App\Trainer');
     }
 
+
+    public function calculateDiscount(){
+        return $this->advance - $this->discount;
+    }
+
 }

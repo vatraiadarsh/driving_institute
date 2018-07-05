@@ -31,11 +31,13 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Enquiry Id</th>
-            <th>Advance</th>
-            <th>Discount</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Duration</th>
+            <th>Advance(RS)</th>
+            <th>Discount(%)</th>
             <th>Booked Date</th>
-            <th>Trainer Id</th>
+            <th>Trainer Name</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -44,9 +46,11 @@
         <tbody>
             <tr>
                 <td>{{$booking->id}}</td>
-                <td>{{$booking->enquiry->name}}   {{$booking->enquiry->course->name}}&#44;&nbsp;&nbsp;{{$booking->enquiry->course->duration}} {{$booking->enquiry->course->durationType->duration_type}}</td>
+                <td>{{$booking->enquiry->name}} </td>
+                <td>{{$booking->enquiry->course->name}}</td>
+                <td>{{$booking->enquiry->course->duration}}&nbsp;{{$booking->enquiry->course->durationType->duration_type}}</td>
                 <td>{{$booking->advance}}</td>
-                <td>{{$booking->discount}}</td>
+                <td>{{$booking->calculateDiscount()}}</td>
                 <td>{{$booking->booked_date}}</td>
                 <td>{{$booking->trainer->fullName()}}</td>
 

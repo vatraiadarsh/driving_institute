@@ -51,7 +51,7 @@ class BookingsController extends Controller
         $booking->booked_date=$request->input('booked_date');
         $booking->trainer_id=$request->input('trainer_id');
         $booking->save();
-        return redirect('admin/enquiries');
+        return redirect('admin/bookings');
 
         if($request->has('ctn')){
             return redirect('admin/bookings/create');
@@ -76,9 +76,15 @@ class BookingsController extends Controller
      * @param  \App\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booking $booking)
+    public function edit($id)
     {
-        //
+        $booking=Booking::findorFail($id);
+        return view('admin.booking.edit',[
+            'booking'=>$booking,
+            'enquiries'=>Enquiry::all(),
+            'trainers'=>Trainer::all(),
+
+        ]);
     }
 
     /**
@@ -90,7 +96,13 @@ class BookingsController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        $booking->enquiry_id=$request->input('enquiry_id');
+        $booking->advance=$request->input('advance');
+        $booking->discount=$request->input('discount');
+        $booking->booked_date=$request->input('booked_date');
+        $booking->trainer_id=$request->input('trainer_id');
+        $booking->save();
+        return redirect('admin/bookings');
     }
 
     /**
@@ -99,8 +111,10 @@ class BookingsController extends Controller
      * @param  \App\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Booking $booking)
+    public function destroy($id)
     {
-        //
+        $type=Booking::find($id);
+        $type->delete();
+        return redirect('admin/bookings');
     }
 }

@@ -10,10 +10,7 @@ class Trainer extends Model
 
 
     public function fullName(){
-        return $this->first_name.''.$this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 
-    // public function shift(){
-    //     return $this->hasMany('App\Shift');
-    // }
 }

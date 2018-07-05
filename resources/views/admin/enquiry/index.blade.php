@@ -32,10 +32,11 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Course Name</th>
+            <th>Course Duration</th>
             <th>DOB</th>
             <th>Email</th>
             <th>Contact No</th>
-            <th>Course Id</th>
             <th>timing</th>
             <th>Action</th>
         </tr>
@@ -47,10 +48,11 @@
             <tr>
                 <td>{{$enquiry->id}}</td>
                 <td>{{$enquiry->name}}</td>
+                <td>{{$enquiry->course->name}}</td>
+                <td>{{$enquiry->course->duration}}&nbsp;{{$enquiry->course->durationType->duration_type}}</td>
                 <td>{{$enquiry->dob}}</td>
                 <td>{{$enquiry->email}}</td>
                 <td>{{$enquiry->cont_no}}</td>
-                <td>{{$enquiry->course->name}}&#44;&nbsp;&nbsp;{{$enquiry->course->duration}} {{$enquiry->course->durationType->duration_type}}</td>
                 <td>{{$enquiry->timing}}</td>
 
 

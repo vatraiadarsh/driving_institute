@@ -80,7 +80,7 @@ class EnquiriesController extends Controller
     public function edit($id)
     {
         $enquiry=Enquiry::findOrFail($id);
-        return view('admin.Enquiry.edit',[
+        return view('admin.enquiry.edit',[
             'enquiry'=>$enquiry,
             'courses'=>Course::where('status',1)->get(),
         ]);
@@ -99,7 +99,6 @@ class EnquiriesController extends Controller
         $enquiry->dob=$request->input('dob');
         $enquiry->email=$request->input('email');
         $enquiry->cont_no=$request->input('cont_no');
-        $enquiry->shift_id=$request->input('shift_id');
         $enquiry->timing=$request->input('timing');
         $enquiry->course_id=$request->input('course_id');
         $enquiry->save();

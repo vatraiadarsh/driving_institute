@@ -15,4 +15,8 @@ class Course extends Model
     // public function shiftType(){
     //     return $this->hasMany('App\Shift');
     // }
+
+    public function fees(){
+        return $this->fees;
+    }
 }

@@ -18,6 +18,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/enquiries','EnquiriesController');
     Route::resource('/bookings','BookingsController');
     Route::resource('/shift','ShiftController');
+    Route::resource('/payment/students','StudentsPaymentController');
+    Route::resource('/payment/staffs/trainers','TrainersPaymentController');
 
 
     Route::get('userajax', 'DataController@userajax');

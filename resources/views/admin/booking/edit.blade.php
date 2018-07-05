@@ -1,125 +1,88 @@
 @extends('adminlte::page')
 
-@section('title', 'Enquiry')
+@section('title', 'Booking')
 
 @section('content_header')
-<h1>
-    Edit Enquiry
-  </h1>
+<h1>.</h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-    <li class="#">Enquiry</li>
-    <li class="active"> Edit Enquiries</li>
+    <li class="#">Booking</li>
+    <li class="active"> Edit Booking</li>
   </ol>
 @stop
+
 @section('content')
 <!-- Input addon -->
 <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">EditEnquiry</h3>
+          <h3 class="box-title">Edit Booking</h3>
         </div>
+    {!!Form::open(['url'=>'admin/bookings/'.$booking->id,'method'=>'PUT',])!!}
 
-    {!!Form::open(['url'=>'admin/enquiries/'.$enquiry->id,'method'=>'PUT',])!!}
-
-    <div class="box-body"><!-- main box -->
+     <div class="box-body"><!-- main box -->
         <div class="form-group">
-            {{Form::Label('Full Name')}}
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                {{Form::text('name',$enquiry->name,['class'=>'form-control','placeholder' => 'Enter the full name'])}}
-
-
+                    {{Form::Label('Enquiry Id')}}
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+                          <select class="js-dropdown" style="width: 100%;" name="enquiry_id">
+                                    <option selected="selected">--select--</option>
+                                   @foreach ($enquiries as $e)
+                                 <option value="{{$e->id}}"
+                                    selected
+                                    >{{$e->name}}&#44;&nbsp;&nbsp;{{$e->course->name}} {{$e->course->duration}} {{$e->course->durationType->duration_type}}</option>
+                                   @endforeach
+                                  </select>
+                        </div>
             </div>
-        </div>
 
         <div class="form-group">
-            {{Form::Label('Date of Birth')}}
+            {{Form::Label('Trainer id')}}
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                    {{Form::date('dob',$enquiry->dob,['class'=>'form-control'])}}
-
-                </div>
+                            <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+                          <select class="js-dropdown" style="width: 100%;" name="trainer_id">
+                                    <option selected="selected">--select--</option>
+                                   @foreach ($trainers as $t)
+                                 <option value="{{$t->id}}"
+                                    selected
+                                    >{{$t->first_name}}&nbsp;{{$t->last_name}}</option>
+                                   @endforeach
+                                  </select>
+                        </div>
         </div>
 
         <div class="form-group">
-                {{Form::Label('Email')}}
+                {{Form::Label('Advanced')}}
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                        {{Form::email('email',$enquiry->email,['class'=>'form-control', 'placeholder' => 'example@yourdomain.com'])}}
-
+                        <span class="input-group-addon"><b>Rs</b></i></span>
+                        {{Form::text('advance',$booking->advance,['class'=>'form-control','placeholder' => 'Enter Email'])}}
+                         <span class="input-group-addon">.00</span>
                     </div>
             </div>
 
             <div class="form-group">
-                    {{Form::Label('Contact No')}}
+                    {{Form::Label('Discount')}}
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            {{Form::text('cont_no',$enquiry->cont_no,['class'=>'form-control'])}}
-
-                        </div>
+                        <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                        {{Form::text('discount',$booking->discount,['class'=>'form-control','placeholder' => 'Enter Email'])}}
+                         <span class="input-group-addon">%</span>
+                    </div>
             </div>
 
-            <div class="form-group">
-                    {{Form::Label('Shift')}}
+             <div class="form-group">
+                    {{Form::Label('Booked Date')}}
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-shirtsinbulk"></i></span>
-                            {{Form::text('shift',$enquiry->shift,['class'=>'form-control',])}}
-                            <select class="js-dropdown" style="width: 100%;" name="shift">
-                                <option selected="selected">--select--</option>
-                                   @foreach ($shifts as $shift)
-                                 <option value="{{$d->id}}"
-                                 selected
-                                 >{{$d->shift}}</option>
-                                   @endforeach
-                                  </select>
+                        <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
+                        {{Form::text('booked_date',$booking->booked_date,['class'=>'form-control','placeholder' => 'Enter Email'])}}
 
-                                  </select>
-
-                        </div>
+                    </div>
             </div>
 
 
-            <div class="form-group">
-                    {{Form::Label('Course Id')}}
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
-                            <select class="js-dropdown" style="width: 100%;" name="course_id">
-                                    <option selected="selected">--select--</option>
-                                   @foreach ($courses as $c)
-                                 <option value="{{$c->id}}"
-                                 selected
-                                 >{{$c->name}}</option>
-                                   @endforeach
-                                  </select>
-                        </div>
-            </div>
-
-            <div class="form-group">
-                    {{Form::Label('Time')}}
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                            {{Form::time('timing',$enquiry->timing,['class'=>'form-control','palceholder'=>'Please Enter your Prefferen Timing'])}}
-                        </div>
-            </div>
 
     </div><!-- end of main box -->
 
-
-
     <button type="submit" class="btn btn-primary">Save</button>
-    <a class="btn btn-danger" href="{{url('admin/enquiries')}}">Back</a>
+    <a class="btn btn-danger" href="{{url('admin/bookings')}}">Back</a>
 {!!Form::close()!!}
 
 @stop
-
-
-@section('css')
-<!--Toggle Button-->
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-@stop
-
-@section('js')
-<!--Toggle Button-->
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-@stop
-

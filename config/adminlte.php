@@ -252,6 +252,51 @@ return [
 
 
 
+        [
+            'text'    => 'Payments',
+            'icon'    => 'dollar',
+            'submenu' => [
+
+                [
+                    'text'    => 'Students Payments',
+                    'icon'    => 'user',
+
+                    'submenu' => [
+                        [
+                            'text' => 'All Payments',
+                            'icon' => 'tasks',
+                            'url'  => 'admin/payment/students',
+                        ],
+                        [
+                            'text' => 'Add Payments',
+                            'icon' => 'plus',
+                            'url'  => 'admin/payment/students/create',
+                        ],
+
+                    ],
+                ],
+                [
+                    'text'    => 'Trainers Payments',
+                    'icon'    => 'user-o',
+                    'submenu' => [
+                        [
+                            'text' => 'All Payments',
+                            'icon' => 'tasks',
+                            'url'  => 'admin/payment/staffs/trainers',
+                        ],
+                        [
+                            'text' => 'Add Payments',
+                            'icon' => 'plus',
+                            'url'  => 'admin/payment/staffs/trainers/create',
+                        ],
+
+                    ],
+                ],
+
+            ],
+        ],
+
+
 
 
 
